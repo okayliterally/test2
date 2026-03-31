@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
+    <link rel="apple-touch-icon" href="favicon.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sight.w games</title>
+    <meta name="title" content="sight.w games" />
+    <meta
+      name="description"
+      content="Play games on sight.w games. Fast, free, no downloads."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="sight.w games" />
+    <meta
+      property="og:description"
+      content="Play games on sight.w games. Fast, free, no downloads."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="sight.w games" />
+    <meta
+      name="twitter:description"
+      content="Play games on sight.w games. Fast, free, no downloads."
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#fb2651" />
+  </head>
+  <body class="dark-mode">
+    <header>
+      <div class="header-content">
+        <div class="logo">sight.w games</div>
+        <div class="search-container">
+          <input type="text" id="searchBar" placeholder="Search games..." oninput="filterZones()" />
+          <select id="sortOptions" onchange="sortZones()">
+            <option value="name">Name</option>
+            <option value="id">ID (Date)</option>
+            <option value="popular">Popular</option>
+            <option value="trendingDay">Trending (Day)</option>
+            <option value="trendingWeek">Trending (Week)</option>
+            <option value="trendingMonth">Trending (Month)</option>
+          </select>
+          <select id="filterOptions" onchange="filterZones2()">
+            <option value="none">(SELECT TAG)</option>
+          </select>
+        </div>
+        <div class="control-buttons">
+          <button id="refresh" class="control-button" title="Refresh all the games" onclick="listZones()">
+            <img src="refresh-icon.png" alt="refresh" />
+          </button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <details id="featuredZonesWrapper" open>
+        <summary id="allZonesSummary" style="font-size: 1.2rem; font-weight: bold; cursor: pointer">
+          Featured Games
+        </summary>
+        <div id="featuredZones" class="zone-container"></div>
+      </details>
+      <br />
+      <hr />
+      <br />
+      <details id="allZonesWrapper" open>
+        <summary id="allSummary" style="font-size: 1.2rem; font-weight: bold; cursor: pointer">All Games</summary>
+        <div id="container">Loading...</div>
+      </details>
+    </main>
+
+    <div id="zoneViewer">
+      <div class="zone-header">
+        <div class="zone-title">
+          <h2 id="zoneName">game</h2>
+          <span id="zoneId" style="display: none"></span>
+          <a id="zoneAuthor" href="#" target="_blank">by Author</a>
+        </div>
+        <div class="zone-controls">
+          <button onclick="fullscreenZone()">Fullscreen</button>
+          <button onclick="aboutBlank()">Open in New Tab</button>
+          <button onclick="downloadZone()">Download</button>
+          <button onclick="closeZone()">Close</button>
+        </div>
+      </div>
+      <iframe id="zoneFrame"></iframe>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+      navigator.serviceWorker.register(location.protocol + '//' + location.hostname + '/sw.js')
+    </script>
+  </body>
+</html>
